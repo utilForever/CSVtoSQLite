@@ -1,8 +1,10 @@
 package main
 
 import (
+	"encoding/csv"
 	"flag"
 	"fmt"
+	"io"
 	"os"
 )
 
@@ -19,13 +21,13 @@ func init() {
 }
 
 func printAbout() {
-	fmt.Println("===================================");
-	fmt.Println("   CSV to SQLite program Ver", programVersion);
-	fmt.Println("===================================");
+	fmt.Println("===================================")
+	fmt.Println("   CSV to SQLite program Ver", programVersion)
+	fmt.Println("===================================")
 }
 
 func main() {
-	flag.Parse();
+	flag.Parse()
 
 	if showHelpMenu {
 		printAbout()
@@ -37,5 +39,33 @@ func main() {
 		fmt.Println("Error: Please provice both a '-t tableName' and '-f fileName.csv'")
 		fmt.Println("Run 'CSVtoSQLite -h' for more information")
 		os.Exit(-2)
+	}
+
+	csvFile, err := os.Open(csvFileName)
+	if err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(-3)
+	}
+
+	defer csvFile.Close()
+
+	csvReader := csv.NewReader(csvFile)
+
+	numFields := 0
+
+	for {
+		record, err := csvReader.Read()
+		if err == io.EOF {
+			break
+		} else if err != nil {
+			fmt.Println("Error:", err)
+			return
+		}
+
+		numFields = len(record)
+
+		for i := 0; i < numFields; i++ {
+			// Something...
+		}
 	}
 }
