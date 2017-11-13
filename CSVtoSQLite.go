@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"path/filepath"
 )
 
 var programVersion = "0.1"
@@ -24,6 +25,15 @@ func printAbout() {
 	fmt.Println("===================================")
 	fmt.Println("   CSV to SQLite program Ver", programVersion)
 	fmt.Println("===================================")
+}
+
+func getSQLFileName() (fileName string) {
+	var onlyFileName = filepath.Base(csvFileName)
+	var extension = filepath.Ext(csvFileName)
+	onlyFileName = onlyFileName[0 : len(onlyFileName)-len(extension)]
+
+	sqlFileName := onlyFileName + ".sql"
+	return sqlFileName
 }
 
 func main() {
@@ -50,6 +60,16 @@ func main() {
 	defer csvFile.Close()
 
 	csvReader := csv.NewReader(csvFile)
+
+	sqlFileName := getSQLFileName()
+
+	sqlFile, err := os.Create(sqlFileName)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	defer sqlFile.Close()
 
 	numFields := 0
 
