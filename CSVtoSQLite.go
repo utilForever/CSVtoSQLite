@@ -46,7 +46,7 @@ func main() {
 	}
 
 	if csvFileName == "" || tableName == "" {
-		fmt.Println("Error: Please provice both a '-t tableName' and '-f fileName.csv'")
+		fmt.Println("Error: Please provide both a '-t tableName' and '-f fileName.csv'")
 		fmt.Println("Run 'CSVtoSQLite -h' for more information")
 		os.Exit(-2)
 	}
