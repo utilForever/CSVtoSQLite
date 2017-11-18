@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bufio"
+	"bytes"
 	"encoding/csv"
 	"flag"
 	"fmt"
@@ -71,7 +73,12 @@ func main() {
 
 	defer sqlFile.Close()
 
+	sqlFileBuffer := bufio.NewWriter(sqlFile)
+
+	lineNum := 0
 	numFields := 0
+
+	var strBuffer bytes.Buffer;
 
 	for {
 		record, err := csvReader.Read()
@@ -84,8 +91,37 @@ func main() {
 
 		numFields = len(record)
 
+		if lineNum == 0 {
+			strBuffer.WriteString("PRAGMA foreign_keys=OFF;\nBEGIN TRANSACTION;\nCREATE TABLE " + tableName + " (")
+		} else if lineNum > 0 {
+			strBuffer.WriteString("INSERT INTO " + tableName + " VALUES (")
+		}
+
 		for i := 0; i < numFields; i++ {
 			// Something...
 		}
+
+		strBuffer.WriteString(");\n")
+
+		isWritten, err := sqlFileBuffer.WriteString(strBuffer.String())	
+		if (err != nil) || (isWritten != len(strBuffer.Bytes())) {
+			fmt.Printf("Warning: Error writing to SQL file line %d: %s", lineNum, err)
+			return
+		}
+
+		strBuffer.Reset()
+
+		lineNum += 1
 	}
+
+	strBuffer.WriteString("COMMIT;\n")
+
+	isWritten, err := sqlFileBuffer.WriteString(strBuffer.String())
+	if (err != nil) || (isWritten != len(strBuffer.Bytes())) {
+		fmt.Printf("Warning: Error writing to SQL file line %d: %s", lineNum, err)
+		return
+	}
+
+	sqlFileBuffer.Flush()
+	strBuffer.Reset()
 }
