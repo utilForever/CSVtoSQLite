@@ -11,7 +11,7 @@ import (
 	"path/filepath"
 )
 
-var programVersion = "0.1"
+var programVersion = "0.9"
 
 var tableName string
 var csvFileName string
@@ -25,7 +25,7 @@ func init() {
 
 func printAbout() {
 	fmt.Println("===================================")
-	fmt.Println("   CSV to SQLite program Ver", programVersion)
+	fmt.Println("   CSV to SQL program Ver", programVersion)
 	fmt.Println("===================================")
 }
 
