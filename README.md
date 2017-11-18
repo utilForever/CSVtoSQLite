@@ -2,7 +2,7 @@
 
 <img src="https://github.com/utilForever/CSVtoSQLite/blob/master/Logo.png" align="center" />
 
-CSVtoSQLite is a simple program specifically designed to quickly convert a comma separated value (CSV) file into simple structured query language (SQL) statements which can then be used as an import source for a SQLite database, and SQLite database (DB3) file which contains all data.
+CSVtoSQLite is a simple program specifically designed to quickly convert a comma separated value (CSV) file into simple structured query language (SQL) statements which can then be used as an import source for a SQLite database, and SQLite database (DB) file which contains all data.
 
 [![License](https://img.shields.io/badge/Licence-MIT-blue.svg)](https://github.com/utilForever/CSVtoSQLite/blob/master/LICENSE)
 
@@ -10,9 +10,9 @@ CSVtoSQLite is a simple program specifically designed to quickly convert a comma
 
 - The CSV file is integrity checked while being converted to SQL
 - The first line of your CSV file will be designated as the header line
-- You choose and specify the table name the CSV file contents will be imported into in your SQLite database
-- The output file #1 is a SQL file which contains the SQL commands that are used by SQLite
-- The output file #2 is a Database file which contains all data
+- You choose and specify the table name the CSV file contents will be imported into in your SQLite database (To-do)
+- CSVtoSQL program generates a SQL file which contains the SQL commands that are used by SQLite
+- SQLtoSQLite program generates a SQLite database file which contains all SQL data (To-do)
 
 ## How To Contribute
 
