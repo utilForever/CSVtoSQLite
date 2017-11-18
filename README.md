@@ -10,7 +10,8 @@ CSVtoSQLite is a simple program specifically designed to quickly convert a comma
 
 - The CSV file is integrity checked while being converted to SQL
 - The first line of your CSV file will be designated as the header line
-- You choose and specify the table name the CSV file contents will be imported into in your SQLite database (To-do)
+- You choose and specify the table name the CSV file contents will be imported into in your SQLite database
+- The header type is automatically deduced (SQLite has a simple type only) (To-do)
 - CSVtoSQL program generates a SQL file which contains the SQL commands that are used by SQLite
 - SQLtoSQLite program generates a SQLite database file which contains all SQL data (To-do)
 
