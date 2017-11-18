@@ -76,7 +76,7 @@ func main() {
 	sqlFileBuffer := bufio.NewWriter(sqlFile)
 
 	lineNum := 0
-	numFields := 0
+	numRecord := 0
 
 	var strBuffer bytes.Buffer;
 
@@ -89,7 +89,7 @@ func main() {
 			return
 		}
 
-		numFields = len(record)
+		numRecord = len(record)
 
 		if lineNum == 0 {
 			strBuffer.WriteString("PRAGMA foreign_keys=OFF;\nBEGIN TRANSACTION;\nCREATE TABLE " + tableName + " (")
@@ -97,7 +97,7 @@ func main() {
 			strBuffer.WriteString("INSERT INTO " + tableName + " VALUES (")
 		}
 
-		for i := 0; i < numFields; i++ {
+		for i := 0; i < numRecord; i++ {
 			// Something...
 		}
 
