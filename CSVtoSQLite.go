@@ -111,7 +111,7 @@ func main() {
 
 		strBuffer.Reset()
 
-		lineNum += 1
+		lineNum++
 	}
 
 	strBuffer.WriteString("COMMIT;\n")
