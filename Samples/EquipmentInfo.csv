@@ -1,0 +1,5 @@
+Name,Description,InventoryType,EquipSlot,Quality,Equipable_Left,Equipable_Right,AddStats
+Torch,A torch to light up the darkness.,WeaponTorch,LeftHand,Common,TRUE,FALSE,
+Torch,A torch to light up the darkness.,WeaponTorch,LeftHand,Common,TRUE,FALSE,
+Torch,A torch to light up the darkness.,WeaponTorch,LeftHand,Common,TRUE,FALSE,
+Torch,A torch to light up the darkness.,WeaponTorch,LeftHand,Common,TRUE,FALSE,
