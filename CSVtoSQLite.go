@@ -98,7 +98,15 @@ func main() {
 		}
 
 		for i := 0; i < numRecord; i++ {
-			// Something...
+			if len(record[i]) == 0 || record[i] == "NULL" {
+				strBuffer.WriteString("NULL")
+			} else {
+				strBuffer.WriteString("\"" + record[i] + "\"")
+			}
+			
+			if i < len(record) - 1 {
+				strBuffer.WriteString(",")
+			}
 		}
 
 		strBuffer.WriteString(");\n")
